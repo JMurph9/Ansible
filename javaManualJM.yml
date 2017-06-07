@@ -1,0 +1,33 @@
+---
+- name: java manual
+  hosts: all
+  remote_user: vagrant
+  sudo: yes
+
+  tasks:
+    - name: Move files
+      command: "cp /tmp/shared/java.tar.gz /home/vagrant"
+
+    - name: Unpack tar file
+      command: "tar zxvf java.tar.gz"
+    
+    - name: Install java
+      command: "update-alternatives --install /usr/bin/java java /home/vagrant/jdk1.8.0_45/bin/java 100"
+
+    - name: Install javac
+      command: "update-alternatives --install /usr/bin/javac javac /home/vagrant/jdk1.8.0_45/bin/javac 100"
+
+    - name: Configure java
+      command: "update-alternatives --config java"
+
+    - name: Move Maven files
+      command: "cp /tmp/shared/maven.tar.gz /home/vagrant"
+
+    - name: Unpack Maven
+      command: "tar zxvf maven.tar.gz"
+
+    - name: Install Maven
+      command: "update-alternatives --install /usr/bin/mvn mvn /home/vagrant/apache-maven-3.3.9/bin/mvn 100"
+
+    - name: Git
+      command: "apt-get install -y git"
