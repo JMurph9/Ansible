@@ -5,6 +5,9 @@
   sudo: yes
 
   tasks:
+    - name: Update
+      apt: update_cache=yes
+      
     - name: Move files
       command: "cp /tmp/shared/java.tar.gz /home/vagrant"
 
@@ -29,5 +32,20 @@
     - name: Install Maven
       command: "update-alternatives --install /usr/bin/mvn mvn /home/vagrant/apache-maven-3.3.9/bin/mvn 100"
 
-    - name: Git
+    - name: Install git
       command: "apt-get install -y git"
+      
+    - name: Move Jenkins files
+      command: "cp /tmp/shared/jenkins_2.1_all.deb /home/vagrant"
+
+    - name: Unpack Jenkins
+      command: "dpkg -i jenkins_2.1_all.deb"
+
+    - name: Force Jenkins
+      command: "apt-get install -y -f"
+    
+    - name: Install Jenkins
+      command: "apt-get install -y jenkins"
+
+    - name: Start Jenkins
+      command: "service jenkins start"
