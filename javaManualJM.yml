@@ -33,7 +33,7 @@
       command: "update-alternatives --install /usr/bin/mvn mvn /home/vagrant/apache-maven-3.3.9/bin/mvn 100"
 
     - name: Install git
-      command: "apt-get install -y git"
+      apt: name=git state=present
       
     - name: Move Jenkins files
       command: "cp /tmp/shared/jenkins_2.1_all.deb /home/vagrant"
