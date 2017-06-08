@@ -50,3 +50,18 @@
 
     - name: Start Jenkins
       command: "service jenkins start"
+      - name: Move Jira files
+      command: "cp /tmp/shared/jira.bin /home/vagrant"
+
+      name: Install Jira
+      shell: |
+        cd /home/vagrant
+        chmod a+x jira.bin
+        ./jira.bin <<EOF
+        yo
+        1
+        2
+        8081
+        8006
+        i
+        EOF
