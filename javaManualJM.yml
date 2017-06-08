@@ -58,7 +58,8 @@
         cd /home/vagrant
         chmod a+x jira.bin
         ./jira.bin <<EOF
-        yo
+        y
+        o
         1
         2
         8081
